@@ -49,6 +49,13 @@ Description:
 		Its a read only attribute provides details like GPU family, the
 		number of cores, the hardware version and the raw product id.
 
+What:		/sys/class/misc/mali%u/device/idle_hysteresis_time
+Description:
+		This attribute is available only with mali platform
+		device-driver that supports a CSF GPU. This attribute is
+		used to set the duration value in milliseconds for the
+		configuring hysteresis field for determining GPU idle detection.
+
 What:		/sys/class/misc/mali%u/device/js_ctx_scheduling_mode
 Description:
 		This attribute is available only with platform device that
@@ -184,6 +191,17 @@ Description:
 		Example:
 		echo "coarse_demand" > /sys/class/misc/mali0/device/power_policy
 
+What:		/sys/class/misc/mali%u/device/progress_timeout
+Description:
+		This attribute is available only with mali platform
+		device-driver that supports a CSF GPU. This attribute
+		is used to set the progress timeout value and read the current
+		progress timeout value.
+
+		Progress timeout value is the maximum number of GPU cycles
+		without forward progress to allow to elapse before terminating a
+		GPU command queue group.
+
 What:		/sys/class/misc/mali%u/device/reset_timeout
 Description:
 		This attribute is used to set the number of milliseconds to
@@ -216,3 +234,51 @@ Description:
 		These options are useful for debugging and investigating
 		failures and gpu hangs to narrow down atoms that could cause
 		troubles.
+
+What:		/sys/class/misc/mali%u/device/firmware_config/Compute iterator count/*
+Description:
+		This attribute is available only with mali platform
+		device-driver that supports a CSF GPU. Its a read-only attribute
+		which indicates the maximum number of Compute iterators
+		supported by the GPU.
+
+What:		/sys/class/misc/mali%u/device/firmware_config/CSHWIF count/*
+Description:
+		This attribute is available only with mali platform
+		device-driver that supports a CSF GPU. Its a read-only
+		attribute which indicates the maximum number of	CSHWIFs
+		supported by the GPU.
+
+What:		/sys/class/misc/mali%u/device/firmware_config/Fragment iterator count/*
+Description:
+		This attribute is available only with mali platform
+		device-driver that supports a CSF GPU. Its a read-only
+		attribute which indicates the maximum number of
+		Fragment iterators supported by the GPU.
+
+What:		/sys/class/misc/mali%u/device/firmware_config/Scoreboard set count/*
+Description:
+		This attribute is available only with mali platform
+		device-driver that supports a CSF GPU. Its a read-only
+		attribute which indicates the maximum number of
+		Scoreboard set supported by the GPU.
+
+What:		/sys/class/misc/mali%u/device/firmware_config/Tiler iterator count/*
+Description:
+		This attribute is available only with mali platform
+		device-driver that supports a CSF GPU. Its a read-only
+		attribute which indicates the maximum number of	Tiler iterators
+		supported by the GPU.
+
+What:		/sys/class/misc/mali%u/device/firmware_config/Log verbosity/*
+Description:
+		This attribute is available only with mali platform
+                device-driver that supports a CSF GPU.
+
+		Used to enable firmware logs, logging levels valid values
+		are indicated using 'min and 'max' attribute values
+		values that are read-only.
+
+		Log level can be set using the 'cur' read, write attribute,
+		we can use a valid log level value from min and max range values
+		and set a valid desired log level for firmware logs.
