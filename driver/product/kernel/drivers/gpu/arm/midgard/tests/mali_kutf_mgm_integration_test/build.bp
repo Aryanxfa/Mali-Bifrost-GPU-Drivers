@@ -18,14 +18,24 @@
  * http://www.gnu.org/licenses/gpl-2.0.html.
  *
  */
-
-#ifndef _VERSION_COMPAT_DEFS_H_
-#define _VERSION_COMPAT_DEFS_H_
-
-#include <linux/version.h>
-
-#if KERNEL_VERSION(4, 16, 0) >= LINUX_VERSION_CODE
-typedef unsigned int __poll_t;
-#endif
-
-#endif /* _VERSION_COMPAT_DEFS_H_ */
+bob_kernel_module {
+    name: "mali_kutf_mgm_integration_test",
+    defaults: [
+        "mali_kbase_shared_config_defaults",
+        "kernel_test_configs",
+        "kernel_test_includes",
+    ],
+    srcs: [
+        "Kbuild",
+        "mali_kutf_mgm_integration_test_main.c",
+    ],
+    extra_symbols: [
+        "mali_kbase",
+        "kutf",
+    ],
+    enabled: false,
+    mali_kutf_mgm_integration_test: {
+        kbuild_options: ["CONFIG_MALI_KUTF_MGM_INTEGRATION_TEST=y"],
+        enabled: true,
+    },
+}
