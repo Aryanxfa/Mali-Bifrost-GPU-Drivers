@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
 /*
  *
- * (C) COPYRIGHT 2016-2021 ARM Limited. All rights reserved.
+ * (C) COPYRIGHT 2016-2022 ARM Limited. All rights reserved.
  *
  * This program is free software and is provided to you under the terms of the
  * GNU General Public License version 2 as published by the Free Software
@@ -52,11 +52,50 @@ bob_defaults {
     install_group: "IG_kernel_modules",
     add_to_alias: ["kernel"],
     owner: "{{.android_module_owner}}",
+    // These flags should be synchronised with that defined in
+    // kernel/drivers/base/arm/Makefile and
+    // kernel/drivers/gpu/arm/midgard/Makefile
     cflags: [
         "-Wall",
+        "-Werror",
+        "-Wextra -Wunused -Wno-unused-parameter",
+        "-Wmissing-declarations",
+        "-Wmissing-format-attribute",
+        "-Wmissing-prototypes",
+        "-Wold-style-definition",
+        // The -Wmissing-include-dirs cannot be enabled as the path to some of the
+        // included directories change depending on whether it is an in-tree or
+        // out-of-tree build.
+        "-Wno-sign-compare",
+        "-Wno-shift-negative-value",
+        "-DKBUILD_EXTRA_WARN1",
+        "-Wdisabled-optimization",
+        // The -Wshadow flag cannot be enabled unless upstream kernels are
+        // patched to fix redefinitions of certain built-in functions and
+        // global variables.
+        "-Wmissing-field-initializers",
+        "-Wtype-limits",
+        "-DKBUILD_EXTRA_WARN2",
+        // This warning is disabled to avoid build failures in some kernel versions
+        "-Wno-ignored-qualifiers",
     ],
-    werror: {
-        cflags: ["-Werror"],
+    target_toolchain_gnu: {
+        cflags: [
+            "-Wunused-but-set-variable",
+            "-Wunused-const-variable",
+            "-Wpacked-not-aligned",
+            "-Wstringop-truncation",
+            "-Wlogical-op",
+            "-Wmaybe-uninitialized",
+            "-Wunused-macros",
+            // This flag is needed to avoid build errors on older kernels
+            "-Wno-cast-function-type",
+        ],
+    },
+    workaround_no_missing_attributes: {
+        cflags: [
+            "-Wno-missing-attributes",
+        ],
     },
     allow_android_tags: {
         tags: [
