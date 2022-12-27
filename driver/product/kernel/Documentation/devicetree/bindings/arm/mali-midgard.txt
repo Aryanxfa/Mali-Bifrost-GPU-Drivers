@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0
 #
-# (C) COPYRIGHT 2013-2020 ARM Limited. All rights reserved.
+# (C) COPYRIGHT 2013-2021 ARM Limited. All rights reserved.
 #
 # This program is free software and is provided to you under the terms of the
 # GNU General Public License version 2 as published by the Free Software
@@ -45,12 +45,12 @@ Documentation/devicetree/bindings/regulator/regulator.txt for details.
                        This is optional.
 - operating-points-v2 : Refer to Documentation/devicetree/bindings/power/mali-opp.txt
 for details.
-- quirks_jm : Used to write to the JM_CONFIG register or equivalent.
+- quirks_gpu : Used to write to the JM_CONFIG or CSF_CONFIG register.
 	  Should be used with care. Options passed here are used to override
 	  certain default behavior. Note: This will override 'idvs-group-size'
 	  field in devicetree and module param 'corestack_driver_control',
-	  therefore if 'quirks_jm' is used then 'idvs-group-size' and
-	  'corestack_driver_control' value should be incorporated into 'quirks_jm'.
+	  therefore if 'quirks_gpu' is used then 'idvs-group-size' and
+	  'corestack_driver_control' value should be incorporated into 'quirks_gpu'.
 - quirks_sc : Used to write to the SHADER_CONFIG register.
 	  Should be used with care. Options passed here are used to override
 	  certain default behavior.
