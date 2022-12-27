@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
 /*
  *
- * (C) COPYRIGHT 2012, 2020-2021 ARM Limited. All rights reserved.
+ * (C) COPYRIGHT 2014, 2017-2022 ARM Limited. All rights reserved.
  *
  * This program is free software and is provided to you under the terms of the
  * GNU General Public License version 2 as published by the Free Software
@@ -19,26 +19,17 @@
  *
  */
 
-#ifndef _DMA_BUF_LOCK_H
-#define _DMA_BUF_LOCK_H
+/**
+ * DOC: Header file for the size of the buffer to accumulate the histogram report text in
+ */
 
-enum dma_buf_lock_exclusive {
-	DMA_BUF_LOCK_NONEXCLUSIVE = 0,
-	DMA_BUF_LOCK_EXCLUSIVE = -1
-};
+#ifndef _UAPI_KBASE_MEM_PROFILE_DEBUGFS_BUF_SIZE_H_
+#define _UAPI_KBASE_MEM_PROFILE_DEBUGFS_BUF_SIZE_H_
 
-struct dma_buf_lock_k_request {
-	int count;
-	int *list_of_dma_buf_fds;
-	int timeout;
-	enum dma_buf_lock_exclusive exclusive;
-};
+/**
+ * KBASE_MEM_PROFILE_MAX_BUF_SIZE - The size of the buffer to accumulate the histogram report text
+ *                                  in @see @ref CCTXP_HIST_BUF_SIZE_MAX_LENGTH_REPORT
+ */
+#define KBASE_MEM_PROFILE_MAX_BUF_SIZE ((size_t)(64 + ((80 + (56 * 64)) * 54) + 56))
 
-#define DMA_BUF_LOCK_IOC_MAGIC '~'
-
-#define DMA_BUF_LOCK_FUNC_LOCK_ASYNC       _IOW(DMA_BUF_LOCK_IOC_MAGIC, 11, struct dma_buf_lock_k_request)
-
-#define DMA_BUF_LOCK_IOC_MINNR 11
-#define DMA_BUF_LOCK_IOC_MAXNR 11
-
-#endif /* _DMA_BUF_LOCK_H */
+#endif /*_UAPI_KBASE_MEM_PROFILE_DEBUGFS_BUF_SIZE_H_*/
