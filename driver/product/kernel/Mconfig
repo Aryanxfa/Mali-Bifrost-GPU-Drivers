@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
 #
 # (C) COPYRIGHT 2017-2021 ARM Limited. All rights reserved.
 #
@@ -18,15 +18,9 @@
 #
 #
 
+menu "Kernel menu"
+
+source "kernel/drivers/base/arm/Mconfig"
 source "kernel/drivers/gpu/arm/midgard/Mconfig"
-source "kernel/drivers/gpu/arm/midgard/arbitration/Mconfig"
 
-config DMA_BUF_SYNC_IOCTL_SUPPORTED
-	bool "Kernel DMA buffers support DMA_BUF_IOCTL_SYNC"
-	depends on BACKEND_KERNEL
-	default y
-
-config BUILD_CSF_ONLY_MODULE
-	bool "Build CSF GPU specific kernel modules"
-	depends on BACKEND_KERNEL && GPU_HAS_CSF
-	default y
+endmenu

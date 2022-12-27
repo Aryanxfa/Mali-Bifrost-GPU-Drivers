@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-2.0 */
+/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
 /*
  *
  * (C) COPYRIGHT 2016-2021 ARM Limited. All rights reserved.
@@ -64,43 +64,6 @@ bob_defaults {
             "optional",
         ],
     },
-    kbuild_options: [
-        "MALI_JIT_PRESSURE_LIMIT_BASE={{.jit_pressure_limit_base}}",
-
-        // Start of CS experimental features definitions.
-        // If there is nothing below, definition should be added as follows:
-        // "MALI_EXPERIMENTAL_FEATURE={{.experimental_feature}}"
-        // experimental_feature above comes from Mconfig in
-        // <ddk_root>/product/base/
-        // However, in Mconfig, experimental_feature should be looked up (for
-        // similar explanation to this one) as ALLCAPS, i.e.
-        // EXPERIMENTAL_FEATURE.
-        //
-        // IMPORTANT: MALI_CS_EXPERIMENTAL should NEVER be defined below as it
-        // is an umbrella feature that would be open for inappropriate use
-        // (catch-all for experimental CS code without separating it into
-        // different features).
-        "MALI_INCREMENTAL_RENDERING={{.incremental_rendering}}",
-    ],
-}
-
-bob_defaults {
-    name: "kutf_includes",
-    local_include_dirs: [
-        "drivers/gpu/arm/midgard/tests/include",
-    ],
-}
-
-bob_defaults {
-    name: "kernel_test_includes",
-    defaults: ["kutf_includes"],
-    local_include_dirs: [
-        "drivers/gpu/arm",
-        "drivers/gpu/arm/midgard",
-        "drivers/gpu/arm/midgard/backend/gpu",
-        "drivers/gpu/arm/midgard/debug",
-        "drivers/gpu/arm/midgard/debug/backend",
-    ],
 }
 
 // Alias for all kernel modules. `kernel_defaults` uses `add_to_alias` to
