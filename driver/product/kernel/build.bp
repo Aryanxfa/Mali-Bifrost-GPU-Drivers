@@ -42,6 +42,7 @@ bob_defaults {
         kernel_ld: "{{.kernel_ld}}",
     },
     install_group: "IG_kernel_modules",
+    owner: "{{.android_module_owner}}",
     cflags: [
         "-Wall",
     ],
