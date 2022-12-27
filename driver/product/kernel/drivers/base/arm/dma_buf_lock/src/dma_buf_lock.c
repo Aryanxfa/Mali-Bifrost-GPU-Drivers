@@ -634,7 +634,7 @@ static int dma_buf_lock_dolock(struct dma_buf_lock_k_request *request)
 			return -EINVAL;
 		}
 #if DMA_BUF_LOCK_DEBUG
-		pr_debug("%s : dma_buf_fd %i dma_buf %p dma_fence reservation %p\n",
+		pr_debug("%s : dma_buf_fd %i dma_buf %pK dma_fence reservation %pK\n",
 		       __func__, resource->list_of_dma_buf_fds[i], resource->dma_bufs[i], resource->dma_bufs[i]->resv);
 #endif
 	}
