@@ -74,7 +74,8 @@ bob_defaults {
         // patched to fix redefinitions of certain built-in functions and
         // global variables.
         "-Wmissing-field-initializers",
-        "-Wtype-limits",
+        // -Wtype-limits must be disabled due to build failures on kernel 5.x
+        "-Wno-type-limits",
         "-DKBUILD_EXTRA_WARN2",
         // This warning is disabled to avoid build failures in some kernel versions
         "-Wno-ignored-qualifiers",
@@ -95,6 +96,13 @@ bob_defaults {
     workaround_no_missing_attributes: {
         cflags: [
             "-Wno-missing-attributes",
+        ],
+    },
+    mali_gcov_kernel: {
+        cflags : [
+            "-fprofile-arcs",
+            "-ftest-coverage",
+            "-DGCOV_PROFILE=1",
         ],
     },
     allow_android_tags: {
