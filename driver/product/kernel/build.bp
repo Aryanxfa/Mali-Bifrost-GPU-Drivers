@@ -99,10 +99,17 @@ bob_defaults {
         ],
     },
     mali_gcov_kernel: {
-        cflags : [
+        cflags: [
             "-fprofile-arcs",
             "-ftest-coverage",
             "-DGCOV_PROFILE=1",
+        ],
+    },
+    mali_kcov: {
+        cflags: [
+            "-fsanitize-coverage=trace-cmp",
+            "-DCONFIG_KCOV=1",
+            "-DCONFIG_KCOV_ENABLE_COMPARISONS=1",
         ],
     },
     allow_android_tags: {
